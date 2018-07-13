@@ -1,28 +1,65 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+  width: fit-content;
+  height: fit-content;
+  border: solid;
+  border-color: black;
+  border-width: thin;
   padding: 20px;
-  color: white;
+  margin: auto;
 }
 
-.App-title {
-  font-size: 1.5em;
+.plotArea {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  border: solid;
+  border-color: darkgray;
+  border-width: thin;
+  display:flex;
+  padding:20px;
 }
 
-.App-intro {
-  font-size: large;
+.label {
+  position: absolute;
+  z-index: 10;
+  font-size: small;
+  font-family: 'Lucida Sans';
+  width: fit-content;
+  height: fit-content;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.plot {
+  width: 700px;
+  height: 700px;
+  border: solid;
+  border-color: darkgray;
+  border-width: thin;
+  margin:10px;
+}
+.point{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  border: solid;
+  border-color: darkgray;
+  border-width: thin;
+  margin:10px;
+}
+.unusedPoints {
+  width: 150px;
+  height: 700px;
+  border: solid;
+  border-color: darkgray;
+  border-width: thin;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  margin:10px;
+}
+.AxisSelectors {
+  display: flex;
+  margin: auto;
+  height: 1.5rem;
+  width: fit-content; 
+  padding: 10px;
 }
