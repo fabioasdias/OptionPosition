@@ -101,10 +101,26 @@ class App extends Component {
                           alt={p.name}/>
                         );
           } else {
+            let x=p.coordinates[this.state.X];
+            let y=p.coordinates[this.state.Y];
+            let left; //(60 + 590*x).toString()+'px',
+            let top; //(722 - 600*y).toString()+'px'                                  
+            if ((x>=0)&&(y>=0)){
+              left=(60 + 590*x).toString()+'px',
+              top=(722 - 600*y).toString()+'px' 
+            }
+            if ((x<0)&&(y>=0)){
+              left=(20).toString()+'px',
+              top=(722 - 600*y).toString()+'px' 
+            }
+            if ((x>=0)&&(y<0)){
+              left=(60 + 590*x).toString()+'px',
+              top=(800).toString()+'px' 
+            }
+
+
             pJSX.push(<div className="point" key={"outer"+i}
-                          style={{left:(60 + 590*p.coordinates[this.state.X]).toString()+'px',
-                                  top :(722 - 600*p.coordinates[this.state.Y]).toString()+'px'                                  
-                                  }}
+                          style={{left:left, top : top}}
                           >
                           <img 
                             className="point" key={'image'+i}
