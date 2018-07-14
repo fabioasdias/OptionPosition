@@ -16,6 +16,11 @@ def cors():
 
 cherrypy.tools.cors = cherrypy._cptools.HandlerTool(cors)
 
+def savePoints(p):
+    with open('points.json','w') as f:
+        json.dump(p,f)
+
+
 
 @cherrypy.expose
 class server(object):
@@ -46,6 +51,9 @@ class server(object):
         cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
         input_json = cherrypy.request.json
         print(input_json)
+        global points
+        points=input_json
+        savePoints(points)
         # VarID=input_json['VarID']
         return([])
 
@@ -70,8 +78,7 @@ class server(object):
             points.append({'name':'',
                         'coordinates':[-1,]*len(axis),
                         'image':savedImage})
-            with open('points.json','w') as f:
-                json.dump(points,f)
+            savePoints(points)
 
         except:
             print('error')

@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import {getData,getURL} from './urls';
+import {getData,getURL, sendData} from './urls';
 import './App.css';
 import FileUploadProgress  from 'react-fileupload-progress';
+// import Draggable from 'react-draggable';
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={points:[],axis:undefined}
+    let dragImg = new Image(0,0);
+    dragImg.src ='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    this.state={points:[],axis:undefined, img : dragImg}
   }
   componentDidMount(){
       getData(getURL.getAxis(),(ax)=>{
-        this.setState({axis:ax,H:0,V:1});
+        this.setState({axis:ax,X:0,Y:1});
     });
     getData(getURL.getPoints(),(st)=>{
       this.setState({points:st});
@@ -23,11 +26,12 @@ class App extends Component {
       retJSX.push(
           <div className="AxisSelectors" key="selectors">
             <select
-              onChange={(d)=>{this.setState({V:+d.target.value});}}
-              defaultValue={this.state.V}
+              style={{height:'1.5rem',margin:'auto'}}            
+              onChange={(d)=>{this.setState({Y:+d.target.value});}}
+              defaultValue={this.state.Y}
               >
-              
-              {this.state.axis.map((d)=>{
+              {this.state.axis.filter((d)=>{
+                return(+d.id!==+this.state.X)}).map((d)=>{
                 return(<option
                         key={'V'+d.id}
                         value={d.id}
@@ -36,11 +40,14 @@ class App extends Component {
                       </option>)
               })}
             </select>
+            <div style={{width:'50px'}}></div>
             <select
-              onChange={(d)=>{this.setState({H:+d.target.value});}}
-              defaultValue={this.state.H}            
+              style={{height:'1.5rem',margin:'auto'}}
+              onChange={(d)=>{this.setState({X:+d.target.value});}}
+              defaultValue={this.state.X}            
               >
-              {this.state.axis.map((d)=>{
+              {this.state.axis.filter((d)=>{
+                return(+d.id!==+this.state.Y)}).map((d)=>{
                 return(<option
                         key={'H'+d.id}
                         value={d.id}
@@ -49,40 +56,96 @@ class App extends Component {
                       </option>)
               })}
             </select>
+            <div style={{width:'100px'}}></div>
+            <button 
+              style={{height:'1.5rem',margin:'auto'}}
+              onClick={(d)=>{
+                sendData(getURL.setPoints(),this.state.points,(ret)=>{
+                  console.log(ret);
+                });
+              }}>
+              Save
+              </button>
         </div>);
         
       let pJSX=[];
       let unused=[];
+      pJSX.push(<p key='ly'
+                  className="labelY"
+                >
+                {"(-)"+this.state.axis[this.state.Y].name+" (+) "}
+                </p>
+                );
+      pJSX.push(<p key='lx'
+                  className="labelX"
+                >
+                {"(-)"+this.state.axis[this.state.X].name+" (+) "}
+                </p>
+                )
+
+
       for (let i=0;i<this.state.points.length;i++){
           let p=this.state.points[i];
-          if ((p.coordinates[this.state.H]===-1) && (p.coordinates[this.state.V]===-1)){
-            unused.push(<img className="point" style={{position:'relative'}}  src={getURL.getImage(p.image)} alt={p.name}></img>);
+          if ((p.coordinates[this.state.X]===-1) && (p.coordinates[this.state.Y]===-1)){
+            unused.push(<img 
+                          className="point" 
+                          onClick={(d)=>{
+                            let cp=this.state.points;
+                            cp[i].coordinates[this.state.X]=0;
+                            cp[i].coordinates[this.state.Y]=0;
+                            this.setState({points:cp});
+                          }}
+                          key={'U'+p.id}
+                          data-pid={p.id}
+                          src={getURL.getImage(p.image)} 
+                          alt={p.name}/>
+                        );
           } else {
-            console.log({left:200+p.coordinates[this.state.V],top:200+p.coordinates[this.state.H]})
-            pJSX.push(<div 
-                        className="point"
-                        style={{left:200+p.coordinates[this.state.V],top:200+p.coordinates[this.state.H]}}
-                        >
-                        <img src={getURL.getImage(p.image)} alt={p.name}></img>
-                      </div>)
+            pJSX.push(<div className="point" key={"outer"+i}
+                          style={{left:(60 + 590*p.coordinates[this.state.X]).toString()+'px',
+                                  top :(722 - 600*p.coordinates[this.state.Y]).toString()+'px'                                  
+                                  }}
+                          >
+                          <img 
+                            className="point" key={'image'+i}
+                            onDragStart={(d)=>{
+                              d.dataTransfer.setDragImage(this.state.img, 0, 0);
+                            }}
+                            onDrag={(d)=>{
+                              if ((d.clientX!==0)&&(d.clientY!==0)){
+                                d.dataTransfer.setDragImage(this.state.img, 0, 0);
+                                let cp=this.state.points;
+                                let x=(d.clientX-110)/600.0;
+                                if (x<0){x=0;}
+                                if (x>1){x=1;}
+                                let y=(500-d.clientY+260)/600.0;
+                                if (y<0){y=0;}
+                                if (y>1){y=1;}
+
+                                cp[i].coordinates[this.state.X]=x;
+                                cp[i].coordinates[this.state.Y]=y;
+                                this.setState({points:cp});  
+                              }
+                            }}  
+                            src={getURL.getImage(p.image)} 
+                            alt={p.name}/>
+                        </div>
+                      )
           }
       }
 
       retJSX.push(
         <div className="plotArea" key="parea">
-          <div className="plot" key="plot">
+          <div 
+            className="plot" 
+            key="plot">
+            {pJSX}
           </div>
           <div className="unusedPoints" key="points">
             {unused}
           </div>
         </div>
       )
-
-      retJSX.push(<div key="outer">
-                    {pJSX}
-                  </div>)
-
-
 
       retJSX.push(
         <div className="AxisSelectors" key="outerouter">
