@@ -43,7 +43,7 @@ class App extends Component {
           let p=this.state.points[i];
           if ((p.coordinates[this.state.X]===-1) && (p.coordinates[this.state.Y]===-1)){
             unused.push(<img 
-                          className="point" 
+                          className="availablePoint" 
                           onClick={(d)=>{
                             let cp=this.state.points;
                             cp[i].coordinates[this.state.X]=0;
@@ -58,19 +58,14 @@ class App extends Component {
           } else {
             let x=p.coordinates[this.state.X];
             let y=p.coordinates[this.state.Y];
-            let left; //(60 + 590*x).toString()+'px',
-            let top; //(722 - 600*y).toString()+'px'                                  
-            if ((x>=0)&&(y>=0)){
-              left=(60 + 590*x).toString()+'px';
-              top=(722 - 600*y).toString()+'px';
-            }
+
+            let left=(15 + 795*x).toString()+'px';
+            let top=(809 - 795*y).toString()+'px';
             if ((x<0)&&(y>=0)){
-              left=(20).toString()+'px';
-              top=(722 - 600*y).toString()+'px' ;
+              left=(0).toString()+'px';
             }
             if ((x>=0)&&(y<0)){
-              left=(60 + 590*x).toString()+'px';
-              top=(800).toString()+'px';
+              top=(850).toString()+'px';
             }
 
 
@@ -86,10 +81,10 @@ class App extends Component {
                               if ((d.clientX!==0)&&(d.clientY!==0)){
                                 d.dataTransfer.setDragImage(this.state.img, 0, 0);
                                 let cp=this.state.points;
-                                let x=(d.clientX-110)/600.0;
+                                let x=(d.clientX-80)/795.0;
                                 if (x<0){x=0;}
                                 if (x>1){x=1;}
-                                let y=(500-d.clientY+260)/600.0;
+                                let y=(600-d.clientY+260)/795.0;
                                 if (y<0){y=0;}
                                 if (y>1){y=1;}
 
@@ -160,7 +155,7 @@ class App extends Component {
             }}>
             Save
             </button>
-            
+
             <FileUploadProgress 
             key='fup' 
             url={getURL.upload()}
