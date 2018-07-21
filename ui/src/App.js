@@ -22,52 +22,7 @@ class App extends Component {
   render() {
     console.log(this.state);
     let retJSX=[];
-    if (this.state.axis!==undefined){
-      retJSX.push(
-          <div className="AxisSelectors" key="selectors">
-            <select
-              style={{height:'1.5rem',margin:'auto'}}            
-              onChange={(d)=>{this.setState({Y:+d.target.value});}}
-              defaultValue={this.state.Y}
-              >
-              {this.state.axis.filter((d)=>{
-                return(+d.id!==+this.state.X)}).map((d)=>{
-                return(<option
-                        key={'V'+d.id}
-                        value={d.id}
-                        >
-                        {d.name}
-                      </option>)
-              })}
-            </select>
-            <div style={{width:'50px'}}></div>
-            <select
-              style={{height:'1.5rem',margin:'auto'}}
-              onChange={(d)=>{this.setState({X:+d.target.value});}}
-              defaultValue={this.state.X}            
-              >
-              {this.state.axis.filter((d)=>{
-                return(+d.id!==+this.state.Y)}).map((d)=>{
-                return(<option
-                        key={'H'+d.id}
-                        value={d.id}
-                        >
-                        {d.name}
-                      </option>)
-              })}
-            </select>
-            <div style={{width:'100px'}}></div>
-            <button 
-              style={{height:'1.5rem',margin:'auto'}}
-              onClick={(d)=>{
-                sendData(getURL.setPoints(),this.state.points,(ret)=>{
-                  console.log(ret);
-                });
-              }}>
-              Save
-              </button>
-        </div>);
-        
+    if (this.state.axis!==undefined){        
       let pJSX=[];
       let unused=[];
       pJSX.push(<p key='ly'
@@ -106,16 +61,16 @@ class App extends Component {
             let left; //(60 + 590*x).toString()+'px',
             let top; //(722 - 600*y).toString()+'px'                                  
             if ((x>=0)&&(y>=0)){
-              left=(60 + 590*x).toString()+'px',
-              top=(722 - 600*y).toString()+'px' 
+              left=(60 + 590*x).toString()+'px';
+              top=(722 - 600*y).toString()+'px';
             }
             if ((x<0)&&(y>=0)){
-              left=(20).toString()+'px',
-              top=(722 - 600*y).toString()+'px' 
+              left=(20).toString()+'px';
+              top=(722 - 600*y).toString()+'px' ;
             }
             if ((x>=0)&&(y<0)){
-              left=(60 + 590*x).toString()+'px',
-              top=(800).toString()+'px' 
+              left=(60 + 590*x).toString()+'px';
+              top=(800).toString()+'px';
             }
 
 
@@ -162,10 +117,51 @@ class App extends Component {
           </div>
         </div>
       )
-
       retJSX.push(
-        <div className="AxisSelectors" key="outerouter">
-          <FileUploadProgress 
+        <div className="AxisSelectors" key="selectors">
+          <select
+            style={{height:'1.5rem',margin:'auto'}}            
+            onChange={(d)=>{this.setState({Y:+d.target.value});}}
+            defaultValue={this.state.Y}
+            >
+            {this.state.axis.filter((d)=>{
+              return(+d.id!==+this.state.X)}).map((d)=>{
+              return(<option
+                      key={'V'+d.id}
+                      value={d.id}
+                      >
+                      {d.name}
+                    </option>)
+            })}
+          </select>
+          <div style={{width:'50px'}}></div>
+          <select
+            style={{height:'1.5rem',margin:'auto'}}
+            onChange={(d)=>{this.setState({X:+d.target.value});}}
+            defaultValue={this.state.X}            
+            >
+            {this.state.axis.filter((d)=>{
+              return(+d.id!==+this.state.Y)}).map((d)=>{
+              return(<option
+                      key={'H'+d.id}
+                      value={d.id}
+                      >
+                      {d.name}
+                    </option>)
+            })}
+          </select>
+          <div style={{width:'100px'}}></div>
+          <button 
+            style={{height:'1.5rem',margin:'auto'}}
+            onClick={(d)=>{
+              sendData(getURL.setPoints(),this.state.points,(ret)=>{
+                console.log(ret);
+              });
+            }}>
+            Save
+            </button>
+            
+            <FileUploadProgress 
             key='fup' 
             url={getURL.upload()}
             // onProgress={(e, request, progress) => {

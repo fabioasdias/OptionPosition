@@ -2,50 +2,46 @@
   width: fit-content;
   height: fit-content;
   border: solid;
+  font-family: 'Lucida Sans';  
   border-color: black;
   border-width: thin;
-  padding: 20px;
-  margin-left: 10px;
-  margin-top: 10px;
+  display: flex;
 }
 
 .plotArea {
-  width: 900px;
-  height: 750px;
+  width: fit-content;
+  height: fit-content;
   margin: auto;
   border: solid;
   border-color: darkgray;
   border-width: thin;
   display:flex;
-  padding:20px;
 }
 
 .labelY {
-  top: 350px;
-  left: -20px;
+  top: 500px;
+  left: 0px;
   position: relative;
   z-index: 10;
   font-size: small;
-  font-family: 'Lucida Sans';
   width: fit-content;
   height: 2rem;
   transform-origin: top left;
   transform : rotate(-90deg);
 }
 .labelX {
-  top: 700px;
+  top: 870px;
   left: 150px;
   z-index: 10;
   position: relative;
+  transform-origin: top left;
   font-size: small;
-  font-family: 'Lucida Sans';
   width: fit-content;
   height: 2rem;
-
 }
 .plot {
-  width: 700px;
-  height: 700px;
+  width: 900px;
+  height: 900px;
   padding: 0;
   border: solid;
   border-color: darkgray;
@@ -65,7 +61,7 @@
 }
 .unusedPoints {
   width: 150px;
-  height: 700px;
+  height: 900px;
   border: solid;
   border-color: darkgray;
   border-width: thin;
@@ -73,12 +69,11 @@
   overflow-x: hidden;
   display: flex;
   margin:10px;
-  padding:10px;
 }
 .AxisSelectors {
-  display: flex;
+  display: block;
   margin: auto;
-  height: 40px;
+  height: fit-content;
   width: fit-content; 
   padding: 10px;
 }
