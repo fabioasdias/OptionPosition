@@ -1,1 +1,27 @@
-[{"name": "Coastal Flux - Ecological Services", "coordinates": [0, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "image": "images/Coastal Flux - Ecological Services.png"}, {"name": "Field - Cultivation", "coordinates": [0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "image": "images/Field - Cultivation.png"}, {"name": "Retention Pond - Commercial and Infastructure", "coordinates": [1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "image": "images/Retention Pond - Commercial and Infastructure.png"}, {"name": "Terrace- High Density Mixed-use", "coordinates": [1, 0.5584905660377358, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "image": "images/Terrace- High Density Mixed-use.png"}, {"name": "Terrace-Recreational", "coordinates": [1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "image": "images/Terrace-Recreational.png"}]
+[
+    {
+        "name": "Coastal Flux - Ecological Services", 
+        "coordinates": [0, 1, -1, -1, -1], 
+        "image": "images/Coastal Flux - Ecological Services.png"
+    }, 
+    {
+        "name": "Field - Cultivation", 
+        "coordinates": [0, 0, -1, -1, -1], 
+        "image": "images/Field - Cultivation.png"
+    }, 
+    {
+        "name": "Retention Pond - Commercial and Infastructure", 
+        "coordinates": [1, 1, -1, -1, -1], 
+        "image": "images/Retention Pond - Commercial and Infastructure.png"
+    }, 
+    {
+        "name": "Terrace- High Density Mixed-use", 
+        "coordinates": [1, 0.5584905660377358, -1, -1, -1], 
+        "image": "images/Terrace- High Density Mixed-use.png"
+    }, 
+    {
+        "name": "Terrace-Recreational", 
+        "coordinates": [1, 0, -1, -1, -1], 
+        "image": "images/Terrace-Recreational.png"
+    }
+]

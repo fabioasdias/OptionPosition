@@ -1,149 +1,27 @@
 [
     {
         "id":0,
-        "name": "Special Flood Hazard",
-        "kind": "category",
-        "values": ["VE","AO","AE","AH","X"]
+        "name": "Flood height",
+        "var": "fld_height"
     },
     {
         "id":1,
-        "name": "Salt water intrusion",
-        "kind": "range"
+        "name": "Saturation index 1",
+        "var": "sat_idx_1"
     },
     {
         "id":2,
-        "name": "Storm surge heights",
-        "kind": "range"
+        "name": "Saturation index 2",
+        "var": "sat_idx_2"
     },
     {
         "id":3,
-        "name": "Storm Surge",
-        "kind": "category",
-        "values": ["1","2","3","4","5"]
-    },
+        "name": "Water storage",
+        "var": "wtr_storag"
+    },    
     {
         "id":4,
-        "name": "parcel.properties.link",
-        "kind": "range"
-    },    
-    {
-        "id":5,
-        "name": "parcel.properties.effyrblt",
-        "kind": "range"
-    },    
-    {
-        "id":6,
-        "name": "parcel.properties.actyrbit",
-        "kind": "range"
-    },    
-    {
-        "id":7,
-        "name": "parcel.properties.lucode",
-        "kind": "range"
-    },    
-    {
-        "id":8,
-        "name": "parcel.properties.acres",
-        "kind": "range"
-    },    
-    {
-        "id":9,
-        "name": "parcel.properties.lndsqfoot",
-        "kind": "range"
-    },    
-    {
-        "id":10,
-        "name": "parcel.properties.indval",
-        "kind": "range"
-    },    
-    {
-        "id":11,
-        "name": "parcel.properties.shwt_range",
-        "kind": "range"
-    },    
-    {
-        "id":12,
-        "name": "parcel.properties.shwt_durat",
-        "kind": "range"
-    },    
-    {
-        "id":13,
-        "name": "parcel.properties.hydric",
-        "kind": "range"
-    },        
-    {
-        "id":14,
-        "name": "parcel.properties.fld_zone",
-        "kind": "range"
-    },            
-    {
-        "id":15,
-        "name": "parcel.properties.zone_subty",
-        "kind": "range"
-    },                
-    {
-        "id":16,
-        "name": "parcel.properties.static_bfe",
-        "kind": "range"
-    },                
-    {
-        "id":17,
-        "name": "parcel.properties.wtr_storage_potential",
-        "kind": "range"
-    },                    
-    {
-        "id":18,
-        "name": "parcel.properties.storm_surge_cat",
-        "kind": "range"
-    },                    
-    {
-        "id":19,
-        "name": "base_watertable",
-        "kind": "range"
-    },                        
-    {
-        "id":20,
-        "name": "future_watertable",
-        "kind": "range"
-    },                            
-    {
-        "id":21,
-        "name": "Elevation",
-        "kind": "range"
-    },                            
-    {
-        "id":22,
-        "name": "Assessment structure",
-        "kind": "range"
-    },                            
-    {
-        "id":23,
-        "name": "Assessment ownership",
-        "kind": "range"
-    },                            
-    {
-        "id":24,
-        "name": "Assessment home_insurance",
-        "kind": "range"
-    },                            
-    {
-        "id":25,
-        "name": "Assessment flood_insurance",
-        "kind": "range"
-    },                            
-    {
-        "id":26,
-        "name": "Assessment waterline",
-        "kind": "range"
-    },                                
-    {
-        "id":27,
-        "name": "Assessment damage_percent",
-        "kind": "range"
-    },                                   
-    {
-        "id":28,
-        "name": "Assessment assistance_required",
-        "kind": "range"
+        "name": "Storm surge",
+        "var": "storm_surg"
     }
 ]

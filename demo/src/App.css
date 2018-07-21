@@ -1,3 +1,8 @@
 .App {
   font-family: 'Lucida Sans';
+  width: 99%;
+  height: 98%;
+  position: absolute;
+  margin: auto;
+  padding: 0.5%;
 }
