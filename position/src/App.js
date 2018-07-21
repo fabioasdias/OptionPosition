@@ -156,7 +156,7 @@ class App extends Component {
             Save
             </button>
 
-            <FileUploadProgress 
+            {/* <FileUploadProgress 
             key='fup' 
             url={getURL.upload()}
             // onProgress={(e, request, progress) => {
@@ -174,7 +174,7 @@ class App extends Component {
             }}
             onError={ (e, request) => {console.log('error', e, request);}}
             onAbort={ (e, request) => {console.log('abort', e, request);}}
-          />        
+          />         */}
         </div>
         );
     }
