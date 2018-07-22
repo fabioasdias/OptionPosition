@@ -2,26 +2,32 @@
     {
         "id":0,
         "name": "Flood height",
-        "var": "fld_height"
+        "var": "fld_height",
+        "min":0,
+        "max":56
     },
     {
         "id":1,
         "name": "Saturation index 1",
-        "var": "sat_idx_1"
+        "var": "sat_idx_1",
+        "min":0,"max":100
     },
     {
         "id":2,
         "name": "Saturation index 2",
-        "var": "sat_idx_2"
+        "var": "sat_idx_2",
+        "min":0,"max":100
     },
     {
         "id":3,
         "name": "Water storage",
-        "var": "wtr_storag"
+        "var": "wtr_storag",
+        "min":-4,"max":8
     },    
     {
         "id":4,
         "name": "Storm surge",
-        "var": "storm_surg"
+        "var": "storm_surg",
+        "min":0,"max":5
     }
 ]
