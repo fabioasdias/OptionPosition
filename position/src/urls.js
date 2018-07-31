@@ -1,7 +1,7 @@
 const baseURL=()=>{
-    return('http://142.1.190.38:9000/');
+    //return('http://142.1.190.38:9000/');
     // return('http://daedalus.zapto.org:9000/');
-    // return('http://localhost:8000/');
+     return('http://localhost:9000/');
     //return('http://142.1.190.14/bal/')
 }
 
