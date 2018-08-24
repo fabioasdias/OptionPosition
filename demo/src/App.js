@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React, { Component } from 'react';
 import './App.css';
-import {getData,getURL, sendData} from './urls';
+import {getData,getURL} from './urls';
 import Map from './glmap.js';
 
 class App extends Component {
@@ -56,6 +56,7 @@ class App extends Component {
               <div className="opt">
                 <p>{d.name}</p>
                 <img 
+                  alt="options"
                   className="optImg"
                   src={getURL.getImage(d.image)} 
                 />

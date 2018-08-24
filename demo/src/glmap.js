@@ -9,8 +9,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZGlhc2YiLCJhIjoiY2pqc243cW9wNDN6NTNxcm1jYW1ja
 
 
 let Map = class Map extends React.Component {
-  map;
-    
+  constructor(props){
+    super(props);
+    this.state={map:{}};
+  }
 
   componentDidUpdate() {
   }
@@ -29,8 +31,9 @@ let Map = class Map extends React.Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/diasf/cjl767ub60f4p2rmyup3vmmw7',
+      // style: 'mapbox://styles/mapbox/light-v9',
       center: [-80.1469974,26.0889407],
-      zoom:14
+      zoom:10
     });
 
     let BoundsChange=(d)=>{
@@ -46,7 +49,7 @@ let Map = class Map extends React.Component {
     this.map.on('movestart',()=>{this.moving=true;});
     this.map.on('moveend',()=>{this.moving=false;});
     this.map.on('click',(e)=>{
-      this.map.flyTo({center:[e.lngLat.lng,e.lngLat.lat],zoom:16});
+      this.map.flyTo({center:[e.lngLat.lng,e.lngLat.lat]});//,zoom:16
       var allfeatures = this.map.queryRenderedFeatures(e.point);
       console.log('all',allfeatures)
       var features = this.map.queryRenderedFeatures(e.point, { layers: ['gjlayer'] });
@@ -89,31 +92,27 @@ let Map = class Map extends React.Component {
 
     
     this.map.on('load', () => {
-      if (this.props.URL!==undefined){
-        console.log('Fetching',this.props.URL);
-        fetch(this.props.URL)
-        .then((response) => {
-          if (response.status >= 400) {throw new Error("Bad response from server");}
-          return response.json();
-        })
-        .then((ret)=>{
-          console.log(ret)
-          this.map.addSource('gj', {
-            type: 'geojson',
-            data: ret,
-          });
 
-          this.map.addLayer({
-            id: 'gjlayer',
-            type: 'fill',
-            source: 'gj',
-            paint: {'fill-color':'green',
-                    'fill-opacity':0.8
-                    },
-          }, 'country-label-lg'); 
-        });
-      }
-      this.setState({'map':this.map});
+      this.map.addSource('gj', {
+        type: 'vector',
+        data: 'mapbox://styles/diasf/cjl7ypvzo253x2sk09c1jr4qw',
+      });
+
+      // this.map.addLayer({
+      //   'id': 'gjlayer',
+      //   'type': 'line',
+      //   'source': 'gj',
+      //   'source-layer': 'cluster0to11',
+      //   "layout": {
+      //     "line-join": "round",
+      //     "line-cap": "round"
+      //   },
+      //   "paint": {
+      //       "line-color": "#ff69b4",
+      //       "line-width": 1
+      //   }        
+      // }, 'country-label-lg'); 
+      // this.setState({'map':this.map});
     });
   }
 
