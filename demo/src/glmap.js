@@ -28,7 +28,7 @@ let Map = class Map extends React.Component {
   componentDidMount() {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/light-v9',
+      style: 'mapbox://styles/diasf/cjl767ub60f4p2rmyup3vmmw7',
       center: [-80.1469974,26.0889407],
       zoom:14
     });
@@ -47,6 +47,8 @@ let Map = class Map extends React.Component {
     this.map.on('moveend',()=>{this.moving=false;});
     this.map.on('click',(e)=>{
       this.map.flyTo({center:[e.lngLat.lng,e.lngLat.lat],zoom:16});
+      var allfeatures = this.map.queryRenderedFeatures(e.point);
+      console.log('all',allfeatures)
       var features = this.map.queryRenderedFeatures(e.point, { layers: ['gjlayer'] });
       if (features.length>0){
         if (this.props.clbClick!==undefined){
@@ -88,6 +90,7 @@ let Map = class Map extends React.Component {
     
     this.map.on('load', () => {
       if (this.props.URL!==undefined){
+        console.log('Fetching',this.props.URL);
         fetch(this.props.URL)
         .then((response) => {
           if (response.status >= 400) {throw new Error("Bad response from server");}

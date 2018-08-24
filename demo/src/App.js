@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import React, { Component } from 'react';
 import './App.css';
 import {getData,getURL, sendData} from './urls';
@@ -28,10 +29,12 @@ class App extends Component {
       opts=this.state.points.map((d)=>{
         let E=0;
         for (let i=0;i<this.state.axis.length;i++){
-          let cV=+this.state.cprops[this.state.axis[i].var];
-          let cMin=this.state.axis[i].min;
-          let cDelta=this.state.axis[i].max-this.state.axis[i].min;
-          E=E+(+d.coordinates[i]-(cV-cMin)/(cDelta))**2;
+          if (this.state.cprops.hasOwnProperty(this.state.axis[i].var)){
+            let cV=+this.state.cprops[this.state.axis[i].var];
+            let cMin=this.state.axis[i].min;
+            let cDelta=this.state.axis[i].max-this.state.axis[i].min;
+            E=E+(+d.coordinates[i]-(cV-cMin)/(cDelta))**2;  
+          }
         }
         return({...d,E:Math.sqrt(E)});
       });  
@@ -44,7 +47,7 @@ class App extends Component {
     return (
       <div className="App">
         <Map 
-          URL={"./demo.geojson"}
+          // URL={"./demo.geojson"}
           clbClick={clbClick}
         />
         <div className="options">
