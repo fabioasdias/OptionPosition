@@ -21,7 +21,7 @@ class App extends Component {
 
     let clbClick=(props)=>{
       this.setState({cprops:props});
-      console.log(props);
+      console.log('->',props);
     };
     let opts=[];
 
