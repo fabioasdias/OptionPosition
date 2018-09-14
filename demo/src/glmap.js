@@ -32,7 +32,9 @@ let Map = class Map extends React.Component {
       // style: 'mapbox://styles/diasf/cjl767ub60f4p2rmyup3vmmw7',
       style: 'mapbox://styles/mapbox/light-v9',
       center: [-80.1469974,26.0889407],
-      zoom:10
+      zoom:12,
+      minZoom:10,
+      maxZoom:18
     });
 
     let BoundsChange=(d)=>{
@@ -52,7 +54,7 @@ let Map = class Map extends React.Component {
         // let layerName=
         var features = this.map.queryRenderedFeatures(e.point, 
             { 
-              layers: ['broward'] 
+              layers: ['broward0t11','broward11t13','broward13t15','broward15t20'] 
             });
         console.log(features);
         if (features.length>0){
@@ -65,20 +67,70 @@ let Map = class Map extends React.Component {
     });    
     this.map.on('load', () => {
       this.map.addLayer({
-        "id": "broward",
+        "id": "broward0t11",
         "type": "fill",
         "source": {
             type: 'vector',
             url: 'mapbox://diasf.66ka8y3f'
         },
         "source-layer": "r06_228-aqrjcd",
-        paint: {
+        "minzoom":0,
+        "maxzoom":11,
+        "paint": {
           'fill-color':'lightgray',
           'fill-outline-color':'black',
           'fill-opacity' : 0.5,
         }            
-  }, 'country-label-lg'); 
-      this.setState({'map':this.map});
+      }, 'country-label-lg'); 
+      this.map.addLayer({
+        "id": "broward11t13",
+        "type": "fill",
+        "source": {
+            type: 'vector',
+            url: 'mapbox://diasf.aowml0tz'
+        },
+        "source-layer": "r05_673-2jn1mi",
+        "minzoom":11,
+        "maxzoom":13,
+        "paint": {
+          'fill-color':'lightgray',
+          'fill-outline-color':'black',
+          'fill-opacity' : 0.5,
+        }            
+      }, 'country-label-lg');       
+      this.map.addLayer({
+        "id": "broward13t15",
+        "type": "fill",
+        "source": {
+            type: 'vector',
+            url: 'mapbox://diasf.45ekj5mq'
+        },
+        "source-layer": "r045_1354-2e0cmu",
+        "minzoom":13,
+        "maxzoom":15,
+        "paint": {
+          'fill-color':'lightgray',
+          'fill-outline-color':'black',
+          'fill-opacity' : 0.5,
+        }            
+      }, 'country-label-lg');       
+      this.map.addLayer({
+        "id": "broward15t20",
+        "type": "fill",
+        "source": {
+            type: 'vector',
+            url: 'mapbox://diasf.4jev0z2f'
+        },
+        "source-layer": "r0-9zm7ji",
+        "minzoom":15,
+        "maxzoom":20,
+        "paint": {
+          'fill-color':'lightgray',
+          'fill-outline-color':'black',
+          'fill-opacity' : 0.5,
+        }            
+      }, 'country-label-lg');       
+    this.setState({'map':this.map});
     });
   }
     //fld_height, sat_idx_1, sat_idx_2, wtr_storag, storm_surg
