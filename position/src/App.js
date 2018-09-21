@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getData,getURL, sendData} from './urls';
+import {getData,getURL} from './urls';
 import './App.css';
 import FileUploadProgress  from 'react-fileupload-progress';
 // import Draggable from 'react-draggable';
@@ -149,9 +149,9 @@ class App extends Component {
           <button 
             style={{height:'1.5rem',margin:'auto'}}
             onClick={(d)=>{
-              sendData(getURL.setPoints(),this.state.points,(ret)=>{
-                console.log(ret);
-              });
+              // getData(getURL.setPoints(),this.state.points,(ret)=>{
+              //   console.log(ret);
+              // });
             }}>
             Save
             </button>

@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Coastal Flux - Ecological Services", 
+        "image": "Coastal Flux - Ecological Services.png", 
+        "coordinates": [0.8943396226415095, 0.7635220125786164, 0.7031446540880503, 0.6327044025157232, 0.9433962264150944]
+    }, 
+    {
+        "name": "Field - Cultivation", 
+        "image": "Field - Cultivation.png", 
+        "coordinates": [0.8566037735849057, 0.6981132075471698, 0.7723270440251573, 0.6037735849056604, 0.24150943396226415]
+    }, 
+    {
+        "name": "Retention Pond - Commercial and Infastructure", 
+        "image": "Retention Pond - Commercial and Infastructure.png", 
+        "coordinates": [0.9232704402515723, 0.38238993710691827, 0.49937106918238994, 0.929559748427673, 0.07169811320754717]
+    }, 
+    {
+        "name": "Terrace- High Density Mixed-use", 
+        "image": "Terrace- High Density Mixed-use.png", 
+        "coordinates": [0.6855345911949685, 0.12830188679245283, 0.2591194968553459, 0.06289308176100629, 0.1471698113207547]
+    }, 
+    {
+        "name": "Terrace-Recreational", 
+        "image": "Terrace-Recreational.png", 
+        "coordinates": [0.22767295597484277, 0.48050314465408805, 0.35974842767295595, 0.2540880503144654, 0.1949685534591195]
+    }
+]
