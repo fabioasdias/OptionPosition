@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import {getData,getURL} from './urls';
 import './App.css';
-import FileUploadProgress  from 'react-fileupload-progress';
-// import Draggable from 'react-draggable';
 
 class App extends Component {
   constructor(props){
     super(props);
     let dragImg = new Image(0,0);
     dragImg.src ='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-    this.state={points:[],axis:undefined, img : dragImg}
+    this.state={points:[],axis:undefined, img : dragImg, allPoints:[], curClass:'',index:undefined}
   }
   componentDidMount(){
       getData(getURL.getAxis(),(ax)=>{
         this.setState({axis:ax,X:0,Y:1});
     });
     getData(getURL.getPoints(),(st)=>{
-      this.setState({points:st});
+      this.setState({allPoints:st,points:st[0].options,curClass:st[0].class,index:0});
     });
   }
   render() {
@@ -36,11 +34,16 @@ class App extends Component {
                 >
                 {"(-)"+this.state.axis[this.state.X].name+" (+) "}
                 </p>
-                )
-
+                );
 
       for (let i=0;i<this.state.points.length;i++){
           let p=this.state.points[i];
+          if (!p.hasOwnProperty('coordinates')){
+            p.coordinates=this.state.axis.map(()=>{return(-1)});
+          }
+          while (p.coordinates.length<this.state.axis.length){
+            p.coordinates.push(-1);
+          }
           if ((p.coordinates[this.state.X]===-1) && (p.coordinates[this.state.Y]===-1)){
             unused.push(<img 
                           className="availablePoint" 
@@ -50,8 +53,8 @@ class App extends Component {
                             cp[i].coordinates[this.state.Y]=0;
                             this.setState({points:cp});
                           }}
-                          key={'U'+p.id}
-                          data-pid={p.id}
+                          key={'U'+i}
+                          data-pid={i}
                           src={getURL.getImage(p.image)} 
                           alt={p.name}/>
                         );
@@ -114,6 +117,42 @@ class App extends Component {
       )
       retJSX.push(
         <div className="AxisSelectors" key="selectors">
+
+          <select
+            style={{height:'1.5rem',margin:'auto',display:'block'}}            
+            onChange={(d)=>{
+              let cap=this.state.allPoints.slice();
+              cap[this.state.index].options=this.state.points;
+              let newIndex=0;
+              for (let i=0;i<cap.length;i++){
+                if (cap[i].class===d.target.value){
+                  newIndex=i;
+                  break;
+                }
+              }
+              this.setState(
+                {
+                  points:cap[newIndex].options,
+                  curClass:cap[newIndex].class,
+                  index:newIndex
+                });
+            }}
+            defaultValue={this.state.curClass}
+            >
+            {this.state.allPoints.filter((d)=>{
+              return(+d.class!==+this.state.curClass)
+            }).map((d)=>{
+                return(<option
+                        key={'V'+d.class}
+                        value={d.class}
+                        >
+                        {d.class}
+                      </option>)
+              })}
+          </select>
+
+          <p></p>
+
           <select
             style={{height:'1.5rem',margin:'auto'}}            
             onChange={(d)=>{this.setState({Y:+d.target.value});}}
@@ -129,7 +168,7 @@ class App extends Component {
                     </option>)
             })}
           </select>
-          <div style={{width:'50px'}}></div>
+
           <select
             style={{height:'1.5rem',margin:'auto'}}
             onChange={(d)=>{this.setState({X:+d.target.value});}}
@@ -145,36 +184,52 @@ class App extends Component {
                     </option>)
             })}
           </select>
-          <div style={{width:'100px'}}></div>
+
+          <p></p>
+
           <button 
             style={{height:'1.5rem',margin:'auto'}}
             onClick={(d)=>{
-              // getData(getURL.setPoints(),this.state.points,(ret)=>{
-              //   console.log(ret);
-              // });
+              let cap=this.state.allPoints.slice();
+              cap[this.state.index].options=this.state.points;
+
+              var typedArray = JSON.stringify(cap);
+              var blob = new Blob([typedArray], {type: 'text/json'});
+              var e    = document.createEvent('MouseEvents');
+              var a    = document.createElement('a');
+      
+              a.download = 'data.json';
+              a.href = window.URL.createObjectURL(blob);
+              a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':');
+              e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+              a.dispatchEvent(e);
             }}>
             Save
-            </button>
-
-            {/* <FileUploadProgress 
-            key='fup' 
-            url={getURL.upload()}
-            // onProgress={(e, request, progress) => {
-            //     console.log('progress', e, request, progress);
-            // }}
-            onLoad={ (e, request) => {
-                let data=JSON.parse(e.target.response);
-                console.log(data);
-                if (data.status==='ok'){
-                    getData(getURL.getPoints(),(st)=>{
-                      console.log('points',st);
-                      this.setState({points:st});
-                  })            
+          </button>
+          <div>
+            <input
+              type='file'
+              id='files'
+              onChange={(d)=>{
+                this.setState({'file':d.target.files[0]});
+              }}
+            />
+            <button 
+              id={"import"}
+              style={{height:'1.5rem',margin:'auto'}}
+              onClick={(d)=>{
+                if (this.state.file!==undefined){
+                  var fr = new FileReader();
+                  fr.onload = ()=>{ 
+                    var result = JSON.parse(fr.result);
+                    this.setState({allPoints:result,points:result[0].options,index:0})
+                  }
+                  fr.readAsText(this.state.file);
                 }
-            }}
-            onError={ (e, request) => {console.log('error', e, request);}}
-            onAbort={ (e, request) => {console.log('abort', e, request);}}
-          />         */}
+              }}>
+              Load
+            </button>
+          </div>
         </div>
         );
     }
