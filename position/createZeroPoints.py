@@ -34,3 +34,12 @@ with open('zeroPoints.json','w') as fout:
     json.dump(res,fout)
 
 
+# parcel.properties.lucode,:  Land use code
+# parcel.properties.shwt_range, : soil water retention range (? )
+# parcel.properties.shwt_durat,: Duration for water retention
+# parcel.properties.hydric,:  hydric soils (yes/no)
+
+# parcel.properties.fld_zone,: FEMA flood zones
+# parcel.properties.zone_subty,:  % chance of flood hazard
+
+# parcel.properties.storm_surge_cat,: category for storm-surge vulnerability

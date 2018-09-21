@@ -3,8 +3,7 @@
         "id":0,
         "name": "Flood height",
         "var": "fld_height",
-        "min":0,
-        "max":56
+        "min":0, "max":56
     },
     {
         "id":1,
@@ -29,5 +28,41 @@
         "name": "Storm surge",
         "var": "storm_surg",
         "min":0,"max":5
+    },
+    {
+        "id":5,
+        "name": "effective year built",
+        "var": "effyrblt",
+        "min":0,"max":2010
+    },
+    {
+        "id":6,
+        "name": "Actual year built",
+        "var": "actyrbit",
+        "min":0,"max":2010
+    },
+    {
+        "id":7,
+        "name": "parcel size in acres",
+        "var": "acres",
+        "min":0,"max":310
+    },
+    {
+        "id":8,
+        "name": "Land value",
+        "var": "lndval",
+        "min":0,"max":70951530
+    },
+    {
+        "id":9,
+        "name": "base flood elevation",
+        "var": "static_bfe",
+        "min":-9999.0,"max":21
+    },
+    {
+        "id":10,
+        "name": "water stage potential",
+        "var": "static_bfe",
+        "min": -4.0,"max":8
     }
 ]

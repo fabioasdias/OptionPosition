@@ -45,7 +45,9 @@ class App extends Component {
             p.coordinates.push(-1);
           }
           if ((p.coordinates[this.state.X]===-1) && (p.coordinates[this.state.Y]===-1)){
-            unused.push(<img 
+            unused.push(<div>
+                         <p style={{width:'fit-content',margin:'auto'}}>{p.name}</p>
+                          <img 
                           className="availablePoint" 
                           onClick={(d)=>{
                             let cp=this.state.points;
@@ -57,6 +59,7 @@ class App extends Component {
                           data-pid={i}
                           src={getURL.getImage(p.image)} 
                           alt={p.name}/>
+                          </div>
                         );
           } else {
             let x=p.coordinates[this.state.X];
