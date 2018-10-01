@@ -64,5 +64,11 @@
         "name": "water stage potential",
         "var": "static_bfe",
         "min": -4.0,"max":8
+    },
+    {
+        "id":11,
+        "name":"",
+        "var":"",
+        "min":0,"max":1
     }
 ]

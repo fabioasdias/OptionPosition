@@ -11,7 +11,7 @@ class App extends Component {
   }
   componentDidMount(){
       getData(getURL.getAxis(),(ax)=>{
-        this.setState({axis:ax,X:0,Y:1});
+        this.setState({axis:ax,X:0,Y:11});
     });
     getData(getURL.getPoints(),(st)=>{
       this.setState({allPoints:st,points:st[0].options,curClass:st[0].class,index:0});
@@ -23,12 +23,12 @@ class App extends Component {
     if (this.state.axis!==undefined){        
       let pJSX=[];
       let unused=[];
-      pJSX.push(<p key='ly'
-                  className="labelY"
-                >
-                {"(-)"+this.state.axis[this.state.Y].name+" (+) "}
-                </p>
-                );
+      // pJSX.push(<p key='ly'
+      //             className="labelY"
+      //           >
+      //           {"(-)"+this.state.axis[this.state.Y].name+" (+) "}
+      //           </p>
+      //           );
       pJSX.push(<p key='lx'
                   className="labelX"
                 >
@@ -44,7 +44,7 @@ class App extends Component {
           while (p.coordinates.length<this.state.axis.length){
             p.coordinates.push(-1);
           }
-          if ((p.coordinates[this.state.X]===-1) && (p.coordinates[this.state.Y]===-1)){
+          if ((p.coordinates[this.state.X]===-1)){// && (p.coordinates[this.state.Y]===-1))
             unused.push(<div>
                          <p style={{width:'fit-content',margin:'auto'}}>{p.name}</p>
                           <img 
@@ -156,7 +156,7 @@ class App extends Component {
 
           <p></p>
 
-          <select
+          {/* <select
             style={{height:'1.5rem',margin:'auto'}}            
             onChange={(d)=>{this.setState({Y:+d.target.value});}}
             defaultValue={this.state.Y}
@@ -170,7 +170,7 @@ class App extends Component {
                       {d.name}
                     </option>)
             })}
-          </select>
+          </select> */}
 
           <select
             style={{height:'1.5rem',margin:'auto'}}
