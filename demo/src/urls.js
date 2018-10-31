@@ -1,8 +1,5 @@
 const baseURL=()=>{
-    //return('http://142.1.190.38:8000/');
     return('./');
-    // return('http://localhost:8000/');
-    //return('http://142.1.190.14/bal/')
 }
 
 export const getURL  = {
@@ -13,7 +10,7 @@ export const getURL  = {
         return(baseURL()+'axis.json');
     },
     getImage: (img) =>{
-        return(baseURL()+img);
+        return(baseURL()+'images/'+img);
     }
 };
 
