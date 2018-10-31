@@ -39,7 +39,7 @@ class App extends Component {
         return({...d,E:Math.sqrt(E)});
       });  
 
-      opts.sort((a,b)=>{return(a.E>b.E)});      
+      opts.sort((a,b)=>{return(a.E-b.E)});      
       console.log(opts);
     }
     
